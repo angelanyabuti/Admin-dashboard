@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useMemo, useState } from "react";
 import { createTheme } from "@mui/material/styles";
 import { Palette } from "@mui/icons-material";
 import { dark, light } from "@mui/material/styles/createPalette";
@@ -193,6 +193,27 @@ export const themeSettings = (mode) => {
                 fontSize: 14,
             },
         }
-    }
-    
+    }    
 }
+//context for color mode function to change the color
+export const ColorModeContext = createContext({
+    toggleColorMode: () => {}
+});
+
+export const useMode = () => {
+    //stores the mode, either light or dark
+    const [mode, setMode] = useState("dark");
+
+    const colorMode = useMemo(
+        () => ({
+            toggleColorMode: () =>
+                setMode((prev) => (prev === "light" ? "dark" : "light")),
+        }),
+    )
+    //setting the theme
+    const theme = useMemo(() => createTheme(themeSettings(mode)), [mode])
+    return [theme, colorMode]
+}
+
+
+
