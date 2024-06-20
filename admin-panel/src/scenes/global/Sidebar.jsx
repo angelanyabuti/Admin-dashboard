@@ -22,10 +22,12 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
     const colors = tokens(theme.palette.mode);
     return (
         //if the selected menu equals the title then it is active
-        <MenuItem active={selected === title} style={{ color: colors.grey[100] }} onClick={() => setSelected(title)} icon={icon}>
-            <Typography>{title}</Typography>
-            <Link to={to} />
-        </MenuItem>
+        <Link to={to} style={{ textDecoration: 'none', color: 'inherit' }}>
+            <MenuItem active={selected === title} style={{ color: colors.grey[100] }} onClick={() => setSelected(title)} icon={icon}>
+                <Typography>{title}</Typography>
+                
+            </MenuItem>
+        </Link>
     );
 };
 
