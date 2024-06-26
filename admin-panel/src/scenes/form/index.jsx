@@ -19,7 +19,7 @@ const userSchema = yup.object().shape({
     firstName:yup.string().required("required"),
     lastName:yup.string().required("required"),
     email:yup.string().email("invalid email").required("required"),
-    contact:yup.string().matches(phoneRegExp, "Phone number is not valid") .required("required"),
+    contact:yup.string().matches(phoneRegExp, "Phone number is not valid").required("required"),
     address1:yup.string().required("required"),
     address2:yup.string().required("required"),
 
@@ -131,6 +131,11 @@ const Form = () => {
                             
                             />
 
+                        </Box>
+                        <Box display="flex" justifyContent="end" mt="20px">
+                            <Button type="submit" color="secondary" variant="contained">
+                                Create New User
+                            </Button>
                         </Box>
                     </form>
 
